@@ -16,11 +16,11 @@ class Customer
     result = "Rental Record for #{@name}\n"
 
     self.rentals.each do |rental|
-      this_amount = rental.amount
-      frequent_renter_points += rental.frequent_renter_points
-      
+      this_amount = rental.charge
       result += "\t #{rental.movie.title} \t #{this_amount} \n"
       total_amount += this_amount
+
+      frequent_renter_points += rental.frequent_renter_points
     end
 
     result += "Amount owed is #{total_amount} \n"
