@@ -13,7 +13,7 @@ class Customer
   def statement
     total_amount = 0
     frequent_renter_points = 0
-    result = "Rental Record for #{@name}\n"
+    result = "Rental Record for #{self.name}\n"
 
     self.rentals.each do |rental|
       this_amount = rental.charge
