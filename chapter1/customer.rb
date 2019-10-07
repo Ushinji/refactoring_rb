@@ -16,24 +16,9 @@ class Customer
     result = "Rental Record for #{@name}\n"
 
     self.rentals.each do |rental|
-      this_amount = 0.0
-      case rental.movie.price_code
-      when Movie::REGULAR then
-        this_amount += 2
-        this_amount += (rental.days_rentaled - 2) * 1.5 if rental.days_rentaled > 2
-      when Movie::NEW_RELEASE then
-        this_amount += rental.days_rentaled * 3
-      when Movie::CHILDRENS then
-        this_amount += 1.5
-        this_amount += (rental.days_rentaled - 3) * 1.5 if rental.days_rentaled > 3
-      end
-
-      frequent_renter_points += 1
-
-      if rental.movie.price_code == Movie::NEW_RELEASE && rental.days_rentaled > 1
-        frequent_renter_points += 1
-      end
-
+      this_amount = rental.amount
+      frequent_renter_points += rental.frequent_renter_points
+      
       result += "\t #{rental.movie.title} \t #{this_amount} \n"
       total_amount += this_amount
     end
